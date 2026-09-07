@@ -1,0 +1,212 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
+
+@font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/ibm-plex-sans-latin-400.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/ibm-plex-sans-latin-ext-400.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/ibm-plex-sans-latin-500.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/ibm-plex-sans-latin-ext-500.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/ibm-plex-sans-latin-600.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/ibm-plex-sans-latin-ext-600.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@theme {
+    --font-sans: 'IBM Plex Sans', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+    --color-ink: oklch(0.168 0.032 248);
+    --color-ink-mid: oklch(0.22 0.034 248);
+    --color-ink-soft: oklch(0.4 0.024 248);
+    --color-paper: oklch(0.978 0.008 88);
+    --color-paper-2: oklch(0.955 0.01 88);
+    --color-line: oklch(0.9 0.012 248);
+    --color-petrol: oklch(0.355 0.058 214);
+    --color-petrol-strong: oklch(0.3 0.06 214);
+    --color-accent: oklch(0.355 0.058 214);
+    --color-accent-strong: oklch(0.3 0.06 214);
+    --color-accent-soft: oklch(0.935 0.02 214);
+    --color-signal: oklch(0.78 0.11 192);
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-paper text-ink antialiased;
+        font-feature-settings: 'ss01' 1, 'kern' 1;
+    }
+
+    :focus-visible {
+        @apply outline-2 outline-offset-2 outline-signal;
+    }
+
+    h1,
+    h2,
+    h3 {
+        scroll-margin-top: 5.5rem;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+
+        [data-reveal] {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+    }
+}
+
+@layer components {
+    .tay-shell {
+        @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+    }
+
+    .tay-kicker {
+        @apply text-[0.6875rem] font-medium tracking-[0.28em] uppercase;
+    }
+
+    .tay-field {
+        @apply mt-2 w-full border-0 border-b border-line bg-transparent px-0 py-3 text-sm outline-none transition duration-200 focus:border-petrol;
+    }
+
+    .tay-display {
+        @apply text-4xl leading-[1.05] font-semibold tracking-[-0.035em] sm:text-5xl lg:text-[3.35rem];
+    }
+
+    .tay-title {
+        @apply text-3xl leading-[1.12] font-semibold tracking-[-0.03em] sm:text-4xl;
+    }
+
+    .tay-service-frame {
+        @apply relative aspect-video w-full overflow-hidden bg-ink-mid;
+    }
+
+    [data-reveal] {
+        opacity: 0;
+        transform: translate3d(0, 1.15rem, 0);
+        transition:
+            opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    [data-reveal].is-in {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@layer utilities {
+    .tay-scan {
+        animation: tay-scan 7.5s ease-in-out infinite;
+    }
+
+    .tay-drift {
+        animation: tay-drift 28s linear infinite alternate;
+    }
+
+    .tay-pulse-line {
+        animation: tay-pulse-line 3.6s ease-in-out infinite;
+    }
+}
+
+@keyframes tay-scan {
+    0%,
+    100% {
+        transform: translateY(-8%);
+        opacity: 0;
+    }
+    12% {
+        opacity: 0.55;
+    }
+    50% {
+        transform: translateY(108%);
+        opacity: 0.2;
+    }
+    88% {
+        opacity: 0;
+    }
+}
+
+@keyframes tay-drift {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(-18px, -10px, 0);
+    }
+}
+
+@keyframes tay-pulse-line {
+    0%,
+    100% {
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}

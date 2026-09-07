@@ -1,0 +1,61 @@
+<?php
+
+return [
+    'services' => [
+        'eyebrow' => 'Service catalogue',
+        'title' => 'Our Services',
+        'lead' => 'Software and IT — including desktop and mobile apps, accounting, custom development and data — technical support, repair and electronics, plus offerings for technology companies, businesses, laboratories and industry.',
+        'for' => 'Who it is for',
+        'includes' => 'What it can include',
+        'request' => 'Request this service',
+        'how' => 'How to request it',
+        'how_text' => 'Describe the starting point and the goal in the form. We check whether the assignment is a fit and name the next step. Submitting a form is not yet acceptance of an order.',
+        'audience' => 'Private customers and businesses — remotely, on site or project-based, depending on the task.',
+        'value' => 'The value',
+        'value_text' => 'A clearly bounded technical service instead of an undefined package. You know what will be inspected, implemented or deliberately not taken on.',
+    ],
+    'about' => [
+        'eyebrow' => 'Company',
+        'title' => 'About Us',
+        'lead' => 'Tay Reparaturservice stands for technical service with clear communication — for private customers and businesses.',
+        'body' => [
+            'We provide technical services in software development and IT, support, electronics repair and operational assistance. That includes desktop applications, smartphone apps, accounting and invoicing systems, custom programming, data management, and fixing, updating and extending existing software. The aim is not scale for its own sake, but work you can follow: diagnosis before action, agreement before implementation.',
+            'Quality, for us, means keeping to the agreed scope and naming limits. We do not invent a company history, certificates or reference customers. Where information is missing, it stays open until it is factually and legally sound.',
+            'Flexibility means one-off assignments are possible, as is recurring support. Remote work and on-site visits depend on the task, access and the agreement.',
+            'Reliability shows in the everyday: enquiries are read, results are handed over, and open issues are not dressed up.',
+        ],
+        'focus_title' => 'What we focus on',
+        'focus' => [
+            'Desktop, mobile and custom software development',
+            'Accounting and invoicing systems within an agreed scope',
+            'Data management plus fixes, updates and new features',
+            'Customer-oriented coordination in plain language',
+            'Quality within the agreed scope',
+            'Flexible models for private and business customers',
+            'Support that remains traceable after handover',
+        ],
+    ],
+    'business' => [
+        'eyebrow' => 'Business customers',
+        'title' => 'For Businesses',
+        'lead' => 'Technical cooperation for organisations that want a flexible external partner.',
+        'intro' => 'Whether a single fault, planned maintenance or a time-limited project: we align the assignment with your organisation. Overall specialist responsibility for your products, equipment and customer relationships remains with you.',
+        'models_title' => 'Possible cooperation models',
+        'models' => [
+            ['title' => 'Software development', 'text' => 'Desktop and mobile apps, accounting and invoicing systems, custom programming, data work, plus fixes, updates and new features.'],
+            ['title' => 'One-time technical service', 'text' => 'A bounded diagnosis, repair, installation or configuration.'],
+            ['title' => 'Repair service', 'text' => 'Device and electronics service after inspection and approval.'],
+            ['title' => 'Technical support', 'text' => 'Incident intake, remote help or on-site support by appointment.'],
+            ['title' => 'Maintenance', 'text' => 'Agreed inspection points and documented findings — without implied standards testing.'],
+            ['title' => 'On-site service', 'text' => 'Assignments at your location subject to access, safety and a description of work.'],
+            ['title' => 'Project-based technical support', 'text' => 'Time-limited work packages in technical projects.'],
+            ['title' => 'Customized solutions', 'text' => 'A combination of analysis, implementation and documentation after written agreement.'],
+        ],
+        'note' => 'Customized technical services based on individual requirements and agreement. Please mention industry, site conditions and the desired timeframe in your enquiry.',
+    ],
+    'faq' => [
+        'eyebrow' => 'Orientation',
+        'title' => 'Frequently Asked Questions',
+        'lead' => 'Short answers to typical questions about repair, support, software and working with businesses.',
+    ],
+];

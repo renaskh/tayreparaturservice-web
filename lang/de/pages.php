@@ -1,0 +1,61 @@
+<?php
+
+return [
+    'services' => [
+        'eyebrow' => 'Leistungskatalog',
+        'title' => 'Unsere Leistungen',
+        'lead' => 'Software und IT – darunter Desktop- und Mobile-Apps, Buchhaltung, individuelle Entwicklung und Daten – technischer Support, Reparatur und Elektronik sowie Angebote für Technologieunternehmen, Betriebe, Labore und Industrie.',
+        'for' => 'Für wen',
+        'includes' => 'Was enthalten sein kann',
+        'request' => 'Diese Leistung anfragen',
+        'how' => 'So fragen Sie an',
+        'how_text' => 'Beschreiben Sie im Formular Ausgangslage und Ziel. Wir prüfen, ob der Auftrag zu uns passt, und nennen den nächsten Schritt. Ein Versand ist noch keine Auftragsannahme.',
+        'audience' => 'Privatkunden und Unternehmen – je nach Aufgabe remote, vor Ort oder projektbezogen.',
+        'value' => 'Nutzen',
+        'value_text' => 'Eine klar begrenzte technische Leistung statt unbestimmter Komplettpakete. Sie wissen, was geprüft, umgesetzt oder bewusst nicht übernommen wird.',
+    ],
+    'about' => [
+        'eyebrow' => 'Unternehmen',
+        'title' => 'Über uns',
+        'lead' => 'Tay Reparaturservice steht für technischen Service mit klarer Kommunikation – für Privatkunden und Unternehmen.',
+        'body' => [
+            'Wir bieten technische Dienstleistungen in den Bereichen Softwareentwicklung und IT, Support, Elektronikreparatur sowie betriebliche Unterstützung. Dazu gehören Desktop-Anwendungen, Smartphone-Apps, Buchhaltungs- und Rechnungssysteme, individuelle Programmierung, Datenverwaltung sowie Fehlerbehebung, Updates und neue Funktionen an bestehender Software. Der Anspruch ist nicht Größe um ihrer selbst willen, sondern nachvollziehbare Arbeit: Diagnose vor Aktion, Abstimmung vor Umsetzung.',
+            'Qualität bedeutet für uns, den vereinbarten Rahmen einzuhalten und Grenzen zu benennen. Wir erfinden keine Betriebsgeschichte, keine Zertifikate und keine Referenzkunden. Wo Angaben fehlen, bleiben sie offen, bis sie fachlich und rechtlich belastbar sind.',
+            'Flexibilität heißt: einmalige Einsätze sind ebenso möglich wie wiederkehrender Support. Remote-Arbeit und Vor-Ort-Termine hängen von Aufgabe, Zugang und Vereinbarung ab.',
+            'Verlässlichkeit zeigt sich im Alltag: Anfragen werden gelesen, Ergebnisse werden übergeben, offene Punkte werden nicht schöngefärbt.',
+        ],
+        'focus_title' => 'Worauf wir uns konzentrieren',
+        'focus' => [
+            'Desktop-, Mobile- und individuelle Softwareentwicklung',
+            'Buchhaltungs- und Rechnungssysteme im vereinbarten Umfang',
+            'Datenverwaltung sowie Fehlerbehebung, Updates und neue Funktionen',
+            'Kundenorientierte Abstimmung in verständlicher Sprache',
+            'Qualität im vereinbarten Umfang',
+            'Flexible Modelle für Privat- und Geschäftskunden',
+            'Support, der nach der Übergabe nachvollziehbar bleibt',
+        ],
+    ],
+    'business' => [
+        'eyebrow' => 'Geschäftskunden',
+        'title' => 'Für Unternehmen',
+        'lead' => 'Technische Zusammenarbeit für Betriebe, die einen flexiblen externen Partner suchen.',
+        'intro' => 'Ob einzelne Störung, geplante Wartung oder ein zeitlich begrenztes Vorhaben: Wir stimmen den Auftrag auf Ihre Organisation ab. Die fachliche Gesamtverantwortung für Ihre Produkte, Anlagen und Kundenbeziehungen bleibt bei Ihnen.',
+        'models_title' => 'Mögliche Zusammenarbeitsmodelle',
+        'models' => [
+            ['title' => 'Softwareentwicklung', 'text' => 'Desktop- und Mobile-Apps, Buchhaltungs- und Rechnungssysteme, individuelle Programmierung, Daten sowie Fehlerbehebung, Updates und neue Funktionen.'],
+            ['title' => 'Einmaliger technischer Einsatz', 'text' => 'Abgegrenzte Diagnose, Reparatur, Installation oder Konfiguration.'],
+            ['title' => 'Reparaturservice', 'text' => 'Geräte- und Elektronikservice nach Prüfung und Freigabe.'],
+            ['title' => 'Technischer Support', 'text' => 'Störungsaufnahme, Remote-Hilfe oder Vor-Ort-Unterstützung nach Termin.'],
+            ['title' => 'Wartung', 'text' => 'Vereinbarte Prüfpunkte und dokumentierte Auffälligkeiten – ohne stillschweigende Normprüfung.'],
+            ['title' => 'Vor-Ort-Service', 'text' => 'Einsätze an Ihrem Standort nach Zugang, Sicherheit und Leistungsbeschreibung.'],
+            ['title' => 'Projektbezogene Unterstützung', 'text' => 'Zeitlich begrenzte Arbeitspakete in technischen Vorhaben.'],
+            ['title' => 'Individuelle Lösungen', 'text' => 'Kombination aus Analyse, Umsetzung und Dokumentation nach schriftlicher Abstimmung.'],
+        ],
+        'note' => 'Individuelle technische Dienstleistungen nach Bedarf und Vereinbarung. Bitte nennen Sie in der Anfrage Branche, Standortbedingungen und gewünschten Zeitraum.',
+    ],
+    'faq' => [
+        'eyebrow' => 'Orientierung',
+        'title' => 'Häufig gestellte Fragen',
+        'lead' => 'Kurze Antworten auf typische Fragen zu Reparatur, Support, Software und Zusammenarbeit mit Unternehmen.',
+    ],
+];
