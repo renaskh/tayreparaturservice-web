@@ -2,28 +2,44 @@
 
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Contracts\Validation\ValidationRule;
+use App\Enums\Locale;
+use App\Support\SiteCopy;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class UpdatePageContentRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return false;
+        return $this->user() !== null;
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
+        $localeRules = [];
+
+        foreach (Locale::values() as $locale) {
+            $localeRules['contents.'.$locale] = ['required', 'array'];
+        }
+
         return [
-            //
+            'contents' => ['required', 'array'],
+            ...$localeRules,
+            'contents.*.*' => ['nullable', 'string'],
         ];
+    }
+
+    public function withValidator(Validator $validator): void
+    {
+        $validator->after(function (Validator $validator): void {
+            $group = $this->route('group');
+
+            if (! is_string($group) || ! SiteCopy::isGroup($group)) {
+                $validator->errors()->add('contents', __('admin.invalid_group'));
+            }
+        });
     }
 }

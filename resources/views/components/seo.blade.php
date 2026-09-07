@@ -9,16 +9,37 @@
 
 @php
     $defaultLocale = \App\Support\Localization::default();
+    $organization = [
+        '@type' => 'ProfessionalService',
+        '@id' => url('/').'#organization',
+        'name' => __('common.brand'),
+        'legalName' => \App\Support\Company::value('legal_name', ''),
+        'url' => \App\Support\Localization::route('home', [], $defaultLocale),
+        'inLanguage' => array_values(config('localization.hreflang')),
+    ];
+
+    if (\App\Support\Company::has('email')) {
+        $organization['email'] = \App\Support\Company::value('email');
+    }
+
+    if (\App\Support\Company::has('phone')) {
+        $organization['telephone'] = \App\Support\Company::value('phone');
+    }
+
+    if (\App\Support\Company::has('street') && \App\Support\Company::has('city')) {
+        $organization['address'] = [
+            '@type' => 'PostalAddress',
+            'streetAddress' => \App\Support\Company::value('street'),
+            'postalCode' => \App\Support\Company::value('postal_code'),
+            'addressLocality' => \App\Support\Company::value('city'),
+            'addressCountry' => \App\Support\Company::value('country'),
+        ];
+    }
+
     $jsonLd = [
         '@context' => 'https://schema.org',
         '@graph' => [
-            [
-                '@type' => 'ProfessionalService',
-                '@id' => url('/').'#organization',
-                'name' => __('common.brand'),
-                'url' => \App\Support\Localization::route('home', [], $defaultLocale),
-                'inLanguage' => array_values(config('localization.hreflang')),
-            ],
+            $organization,
             [
                 '@type' => 'WebSite',
                 '@id' => url('/').'#website',

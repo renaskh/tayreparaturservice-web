@@ -47,6 +47,12 @@
                 <x-legal-field :label="__('legal.imprint.vat')" key="vat_id" />
                 <x-legal-field :label="__('legal.imprint.register_court')" key="register_court" />
                 <x-legal-field :label="__('legal.imprint.register_number')" key="register_number" />
+                @if (! Company::has('register_court') && ! Company::has('register_number'))
+                    <div class="border-b border-line py-4">
+                        <dt class="text-xs font-semibold tracking-[0.18em] text-ink-soft uppercase">{{ __('legal.imprint.register') }}</dt>
+                        <dd class="mt-1">{{ __('legal.imprint.no_register') }}</dd>
+                    </div>
+                @endif
                 <div class="border-b border-line py-4">
                     <dt class="text-xs font-semibold tracking-[0.18em] text-ink-soft uppercase">{{ __('legal.imprint.responsible') }}</dt>
                     <dd class="mt-1">

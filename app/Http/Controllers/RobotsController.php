@@ -12,7 +12,7 @@ class RobotsController extends Controller
 
         $body = <<<TXT
 User-agent: *
-Disallow:
+Disallow: /admin
 
 Sitemap: {$sitemap}
 

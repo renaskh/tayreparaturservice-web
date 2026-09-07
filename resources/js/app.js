@@ -1,20 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.querySelector('[data-nav-toggle]');
+    const toggles = document.querySelectorAll('[data-nav-toggle]');
     const panel = document.querySelector('[data-nav-panel]');
 
-    if (toggle instanceof HTMLElement && panel instanceof HTMLElement) {
+    if (toggles.length > 0 && panel instanceof HTMLElement) {
         const setOpen = (open) => {
             panel.classList.toggle('hidden', !open);
-            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-            document.body.classList.toggle('overflow-hidden', open);
+            panel.classList.toggle('flex', open);
+            document.querySelector('[data-nav-backdrop]')?.classList.toggle('hidden', !open);
+            toggles.forEach((toggle) => {
+                if (toggle instanceof HTMLElement) {
+                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                }
+            });
+            document.body.classList.toggle('overflow-hidden', open && window.matchMedia('(max-width: 1023px)').matches);
         };
 
-        toggle.addEventListener('click', () => {
-            setOpen(panel.classList.contains('hidden'));
+        toggles.forEach((toggle) => {
+            toggle.addEventListener('click', () => {
+                setOpen(panel.classList.contains('hidden'));
+            });
         });
 
-        panel.querySelectorAll('a').forEach((link) => {
-            link.addEventListener('click', () => setOpen(false));
+        document.querySelector('[data-nav-backdrop]')?.addEventListener('click', () => setOpen(false));
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                setOpen(false);
+            }
         });
     }
 

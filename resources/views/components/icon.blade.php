@@ -23,6 +23,12 @@
         'factory' => '<path d="M3 21h18M5 21V10l5 4V10l5 4V8h4v13"/>',
         'compass' => '<circle cx="12" cy="12" r="9"/><path d="m16 8-2.5 6.5L7 17l2.5-6.5L16 8Z"/>',
         'menu' => '<path d="M4 7h16M4 12h16M4 17h16"/>',
+        'close' => '<path d="M6 6l12 12M18 6 6 18"/>',
+        'user' => '<circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>',
+        'file' => '<path d="M14 3H7v18h10V8l-3-5Z"/><path d="M14 3v5h5"/>',
+        'plus' => '<path d="M12 5v14M5 12h14"/>',
+        'layout' => '<rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 10h18M9 10v10"/>',
+        'inbox' => '<path d="M4 6h16v12H4V6Z"/><path d="M4 13h4l2 2h4l2-2h4"/>',
     ];
 @endphp
 

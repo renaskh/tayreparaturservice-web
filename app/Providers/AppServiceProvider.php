@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route as Router;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,13 +41,31 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->ip());
         });
 
+        RateLimiter::for('login', function (Request $request) {
+            return Limit::perMinute(5)->by(Str::transliterate(
+                Str::lower($request->string('email')->toString()).'|'.$request->ip()
+            ));
+        });
+
         Router::bind('serviceCategory', function (string $value) {
+            if (ctype_digit($value)) {
+                return ServiceCategory::query()
+                    ->with(['translations', 'services.translations'])
+                    ->findOrFail($value);
+            }
+
             $locale = Localization::fromRequestPath(request()->path()) ?? Localization::current();
 
             return app(Catalog::class)->categoryBySlug($value, $locale);
         });
 
         Router::bind('service', function (string $value, Route $route) {
+            if (ctype_digit($value)) {
+                return Service::query()
+                    ->with(['translations', 'category.translations'])
+                    ->findOrFail($value);
+            }
+
             $category = $route->parameter('serviceCategory');
 
             if (! $category instanceof ServiceCategory) {

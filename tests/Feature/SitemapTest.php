@@ -26,6 +26,7 @@ class SitemapTest extends TestCase
     {
         $this->get('/robots.txt')
             ->assertOk()
-            ->assertSee('Sitemap: http://localhost/sitemap.xml', false);
+            ->assertSee('Sitemap: http://localhost/sitemap.xml', false)
+            ->assertSee('Disallow: /admin', false);
     }
 }

@@ -20,6 +20,7 @@ class LegalPagesTest extends TestCase
             ->assertSee('+49 163 3609131', false)
             ->assertSee('https://ec.europa.eu/consumers/odr', false)
             ->assertSee('Verbraucherschlichtungsstelle', false)
+            ->assertSee('Es besteht kein Eintrag im Handelsregister', false)
             ->assertDontSee('Bitte ergänzen', false)
             ->assertDontSee('legal.imprint.', false);
     }
@@ -30,7 +31,10 @@ class LegalPagesTest extends TestCase
             ->assertOk()
             ->assertSee('Kontakt- und Anfrageformular', false)
             ->assertSee('technisch notwendiges Sitzungs-Cookie', false)
-            ->assertDontSee('Google Analytics', false);
+            ->assertSee('Enes Handy Reparatur', false)
+            ->assertSee('info@eneshandyreparatur.de', false)
+            ->assertDontSee('Google Analytics', false)
+            ->assertDontSee('sobald sie feststehen', false);
     }
 
     public function test_english_legal_pages_are_available(): void
@@ -39,5 +43,18 @@ class LegalPagesTest extends TestCase
         $this->get('/en/terms')->assertOk()->assertSee('Terms &amp; Conditions', false);
         $this->get('/en/withdrawal')->assertOk()->assertSee('Withdrawal Policy', false);
         $this->get('/en/imprint')->assertOk()->assertSee('Imprint', false);
+    }
+
+    public function test_terms_and_withdrawal_use_provider_identity_instead_of_homework_placeholders(): void
+    {
+        $this->get('/de/agb')
+            ->assertOk()
+            ->assertSee('Enes Handy Reparatur', false)
+            ->assertDontSee('Hier ist zu beschreiben', false);
+
+        $this->get('/de/widerruf')
+            ->assertOk()
+            ->assertSee('Rosenstraße 19', false)
+            ->assertSee('info@eneshandyreparatur.de', false);
     }
 }

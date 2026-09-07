@@ -18,7 +18,9 @@ class SeoMetadataTest extends TestCase
             ->assertSee('hreflang="en"', false)
             ->assertSee('hreflang="x-default"', false)
             ->assertSee('og:title', false)
-            ->assertSee('application/ld+json', false);
+            ->assertSee('application/ld+json', false)
+            ->assertSee('Rosenstraße 19', false)
+            ->assertSee('streetAddress', false);
     }
 
     public function test_german_service_page_canonical_points_to_german_url(): void

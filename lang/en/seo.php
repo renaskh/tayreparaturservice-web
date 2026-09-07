@@ -27,7 +27,7 @@ return [
     ],
     'imprint' => [
         'title' => 'Imprint | Tay Reparaturservice',
-        'description' => 'Imprint of Tay Reparaturservice. Legally required details will be added once they are available.',
+        'description' => 'Imprint of Tay Reparaturservice: provider, address, contact and statutory notices.',
     ],
     'privacy' => [
         'title' => 'Privacy Policy | Tay Reparaturservice',
@@ -35,11 +35,11 @@ return [
     ],
     'terms' => [
         'title' => 'Terms & Conditions | Tay Reparaturservice',
-        'description' => 'Placeholder for the terms and conditions of Tay Reparaturservice — intended for legal review.',
+        'description' => 'Framework for technical services of Tay Reparaturservice. The scope of work follows from a quote or agreement.',
     ],
     'withdrawal' => [
         'title' => 'Withdrawal Policy | Tay Reparaturservice',
-        'description' => 'Placeholder withdrawal information for possible distance contracts — dependent on the actual contract model.',
+        'description' => 'Information on the right of withdrawal for possible distance contracts with consumers — dependent on the actual contract model.',
     ],
     'not_found' => [
         'title' => 'Page not found | Tay Reparaturservice',

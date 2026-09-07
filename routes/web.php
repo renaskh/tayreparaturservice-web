@@ -43,3 +43,5 @@ foreach (Localization::supported() as $locale) {
             Route::get($path('withdrawal'), [PageController::class, 'withdrawal'])->name('legal.withdrawal');
         });
 }
+
+require __DIR__.'/admin.php';

@@ -34,10 +34,10 @@ final class Company
 
     public static function value(string $key, ?string $placeholder = null): string
     {
-        $stored = self::stored($key);
+        if (self::hasStored($key)) {
+            $stored = self::stored($key);
 
-        if (filled($stored)) {
-            return (string) $stored;
+            return filled($stored) ? (string) $stored : ($placeholder ?? '');
         }
 
         $configured = config('company.'.$key);
@@ -51,7 +51,11 @@ final class Company
 
     public static function has(string $key): bool
     {
-        return filled(self::stored($key)) || filled(config('company.'.$key));
+        if (self::hasStored($key)) {
+            return filled(self::stored($key));
+        }
+
+        return filled(config('company.'.$key));
     }
 
     public static function telHref(): ?string
@@ -71,10 +75,43 @@ final class Company
         $values = [];
 
         foreach (self::keys() as $key) {
-            $values[$key] = self::has($key) ? self::value($key, '') : '';
+            $values[$key] = self::hasStored($key)
+                ? (string) (self::stored($key) ?? '')
+                : (string) (config('company.'.$key) ?: '');
         }
 
         return $values;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function replacements(): array
+    {
+        return [
+            'brand' => self::value('name', __('common.brand')),
+            'legal_name' => self::value('legal_name', ''),
+            'legal_form' => self::value('legal_form', ''),
+            'owner' => self::value('owner', ''),
+            'street' => self::value('street', ''),
+            'postal_code' => self::value('postal_code', ''),
+            'city' => self::value('city', ''),
+            'country' => self::value('country', ''),
+            'email' => self::value('email', ''),
+            'phone' => self::value('phone', ''),
+            'website' => self::value('website', ''),
+            'hosting_provider' => self::value('hosting_provider', ''),
+            'address' => trim(self::value('street', '').', '.self::value('postal_code', '').' '.self::value('city', ''), ', '),
+        ];
+    }
+
+    private static function hasStored(string $key): bool
+    {
+        if (! Schema::hasTable('settings')) {
+            return false;
+        }
+
+        return array_key_exists($key, Setting::dictionary());
     }
 
     private static function stored(string $key): ?string

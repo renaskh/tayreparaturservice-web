@@ -27,7 +27,7 @@ return [
     ],
     'imprint' => [
         'title' => 'Impressum | Tay Reparaturservice',
-        'description' => 'Impressum von Tay Reparaturservice. Rechtlich erforderliche Angaben werden ergänzt, sobald sie vorliegen.',
+        'description' => 'Impressum von Tay Reparaturservice: Anbieter, Anschrift, Kontakt und gesetzliche Hinweise.',
     ],
     'privacy' => [
         'title' => 'Datenschutzerklärung | Tay Reparaturservice',
@@ -35,11 +35,11 @@ return [
     ],
     'terms' => [
         'title' => 'AGB | Tay Reparaturservice',
-        'description' => 'Platzhalter für die Allgemeinen Geschäftsbedingungen von Tay Reparaturservice – zur rechtlichen Prüfung vorgesehen.',
+        'description' => 'Rahmenbedingungen für technische Dienstleistungen von Tay Reparaturservice. Der Auftragsumfang folgt aus Angebot oder Vereinbarung.',
     ],
     'withdrawal' => [
         'title' => 'Widerrufsbelehrung | Tay Reparaturservice',
-        'description' => 'Platzhalter zur Widerrufsbelehrung für mögliche Fernabsatzverträge – abhängig vom konkreten Vertragsmodell.',
+        'description' => 'Hinweise zum Widerrufsrecht bei möglichen Fernabsatzverträgen mit Verbrauchern – abhängig vom konkreten Vertragsmodell.',
     ],
     'not_found' => [
         'title' => 'Seite nicht gefunden | Tay Reparaturservice',

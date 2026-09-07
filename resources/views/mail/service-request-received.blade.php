@@ -7,8 +7,10 @@ Eine neue Anfrage ist über die Website eingegangen.
 **Unternehmen:** {{ $serviceRequest->company ?: '–' }}  
 **E-Mail:** {{ $serviceRequest->email }}  
 **Telefon:** {{ $serviceRequest->phone ?: '–' }}  
-**Sprache:** {{ $serviceRequest->locale->value }}  
-**Status:** {{ $serviceRequest->status->value }}
+**Kategorie:** {{ $serviceRequest->category?->translated('name', 'de') ?: '–' }}  
+**Leistung:** {{ $serviceRequest->service?->translated('name', 'de') ?: '–' }}  
+**Sprache:** {{ $serviceRequest->locale?->label() ?? $serviceRequest->locale?->value }}  
+**Status:** {{ $serviceRequest->status->label() }}
 
 **Nachricht:**  
 {{ $serviceRequest->message }}

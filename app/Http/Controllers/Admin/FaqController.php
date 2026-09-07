@@ -2,64 +2,70 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\SyncTranslations;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreFaqRequest;
+use App\Http\Requests\Admin\UpdateFaqRequest;
+use App\Models\Faq;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class FaqController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        return view('admin.faqs.index', [
+            'faqs' => Faq::query()->with('translations')->ordered()->get(),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('admin.faqs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreFaqRequest $request, SyncTranslations $sync): RedirectResponse
     {
-        //
+        DB::transaction(function () use ($request, $sync): void {
+            $faq = Faq::query()->create([
+                ...$request->safe()->only(['key', 'sort_order']),
+                'is_active' => $request->boolean('is_active'),
+            ]);
+
+            $sync->handle($faq, $request->validated('translations'));
+        });
+
+        return redirect()->route('admin.faqs.index')->with('status', __('admin.saved'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Faq $faq): View
     {
-        //
+        $faq->load('translations');
+
+        return view('admin.faqs.edit', [
+            'faq' => $faq,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(UpdateFaqRequest $request, Faq $faq, SyncTranslations $sync): RedirectResponse
     {
-        //
+        DB::transaction(function () use ($request, $faq, $sync): void {
+            $faq->update([
+                ...$request->safe()->only(['key', 'sort_order']),
+                'is_active' => $request->boolean('is_active'),
+            ]);
+
+            $sync->handle($faq, $request->validated('translations'));
+        });
+
+        return redirect()->route('admin.faqs.index')->with('status', __('admin.saved'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Faq $faq): RedirectResponse
     {
-        //
-    }
+        $faq->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('admin.faqs.index')->with('status', __('admin.deleted'));
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\LoadSiteContents;
 use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\SetLocale;
 use App\Support\Localization;
@@ -18,6 +19,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->append(SecurityHeaders::class);
         $middleware->prependToGroup('web', SetLocale::class);
+        $middleware->appendToGroup('web', LoadSiteContents::class);
+
+        $middleware->redirectGuestsTo(fn () => route('admin.login'));
+        $middleware->redirectUsersTo(fn () => route('admin.dashboard'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

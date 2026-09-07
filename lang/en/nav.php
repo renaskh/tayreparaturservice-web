@@ -15,5 +15,5 @@ return [
     'company' => 'Company',
     'footer_services' => 'Services',
     'copyright' => 'All rights reserved.',
-    'disclaimer' => 'Legal texts are placeholders and require professional review before publication.',
+    'disclaimer' => 'Privacy, terms and withdrawal information should be reviewed by a lawyer before the public launch.',
 ];

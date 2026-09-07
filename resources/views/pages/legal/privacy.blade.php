@@ -1,3 +1,5 @@
+@use('App\Support\Company')
+
 <x-layouts.site :title="$metaTitle" :description="$metaDescription" :canonical="$canonical">
     <x-page-header :title="__('legal.privacy.title')" :lead="__('legal.privacy.lead')" />
 
@@ -10,7 +12,13 @@
             ] as $section)
                 <section>
                     <h2 class="text-xl font-semibold text-ink">{{ __('legal.privacy.'.$section) }}</h2>
-                    <p class="mt-3 leading-relaxed">{{ __('legal.privacy.'.$section.'_text') }}</p>
+                    <p class="mt-3 leading-relaxed">
+                        @if ($section === 'hosting' && Company::has('hosting_provider'))
+                            {{ __('legal.privacy.hosting_text_named', Company::replacements()) }}
+                        @else
+                            {{ __('legal.privacy.'.$section.'_text', Company::replacements()) }}
+                        @endif
+                    </p>
                 </section>
             @endforeach
         </div>

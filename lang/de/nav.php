@@ -15,5 +15,5 @@ return [
     'company' => 'Unternehmen',
     'footer_services' => 'Leistungen',
     'copyright' => 'Alle Rechte vorbehalten.',
-    'disclaimer' => 'Rechtstexte sind Platzhalter und bedürfen einer fachlichen Prüfung vor Veröffentlichung.',
+    'disclaimer' => 'Datenschutz, AGB und Widerruf sollten vor dem öffentlichen Livegang anwaltlich geprüft werden.',
 ];

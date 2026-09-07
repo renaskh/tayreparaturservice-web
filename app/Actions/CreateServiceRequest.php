@@ -6,6 +6,7 @@ use App\Enums\Locale;
 use App\Enums\ServiceRequestStatus;
 use App\Mail\ServiceRequestReceived;
 use App\Models\ServiceRequest;
+use App\Support\Company;
 use Illuminate\Support\Facades\Mail;
 
 class CreateServiceRequest
@@ -37,9 +38,9 @@ class CreateServiceRequest
             'privacy_consent_at' => now(),
         ]);
 
-        $notificationEmail = config('company.email');
+        $notificationEmail = Company::value('email', '');
 
-        if (is_string($notificationEmail) && filter_var($notificationEmail, FILTER_VALIDATE_EMAIL)) {
+        if (filter_var($notificationEmail, FILTER_VALIDATE_EMAIL)) {
             Mail::to($notificationEmail)->send(new ServiceRequestReceived($request));
         }
 

@@ -6,6 +6,7 @@ use App\Mail\ServiceRequestReceived;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\ServiceRequest;
+use App\Models\Setting;
 use Database\Seeders\ServiceContentSeeder;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
@@ -37,6 +38,29 @@ class StoreServiceRequestTest extends TestCase
         ]);
 
         Mail::assertSent(ServiceRequestReceived::class);
+    }
+
+    public function test_notification_mail_uses_the_company_setting_email(): void
+    {
+        Setting::putMany(['email' => 'desk@example.com']);
+        config(['company.email' => 'ops@example.com']);
+        Mail::fake();
+
+        $this->from('/de/kontakt')
+            ->post('/de/kontakt', $this->validPayload())
+            ->assertRedirect('/de/kontakt');
+
+        Mail::assertSent(ServiceRequestReceived::class, function (ServiceRequestReceived $mail): bool {
+            return $mail->hasTo('desk@example.com');
+        });
+    }
+
+    public function test_contact_page_shows_phone_and_email(): void
+    {
+        $this->get('/de/kontakt')
+            ->assertOk()
+            ->assertSee('+49 163 3609131', false)
+            ->assertSee('info@eneshandyreparatur.de', false);
     }
 
     public function test_empty_payload_returns_translated_validation_messages(): void

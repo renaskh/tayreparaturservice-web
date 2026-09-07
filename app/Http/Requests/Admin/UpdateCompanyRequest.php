@@ -2,28 +2,31 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Support\Company;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCompanyRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return false;
+        return $this->user() !== null;
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
+     * @return array<string, list<string|ValidationRule>>
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $rules = [];
+
+        foreach (Company::keys() as $key) {
+            $rules[$key] = ['nullable', 'string', 'max:255'];
+        }
+
+        $rules['email'] = ['nullable', 'email:rfc', 'max:255'];
+        $rules['website'] = ['nullable', 'url', 'max:255'];
+
+        return $rules;
     }
 }

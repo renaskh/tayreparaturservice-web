@@ -1,3 +1,5 @@
+@use('App\Support\Company')
+
 <x-layouts.site :title="$metaTitle" :description="$metaDescription" :canonical="$canonical">
     <x-page-header :title="__('legal.terms.title')" :lead="__('legal.terms.lead')" />
 
@@ -8,7 +10,7 @@
             @foreach (__('legal.terms.sections') as $section)
                 <section>
                     <h2 class="text-xl font-semibold">{{ $section['title'] }}</h2>
-                    <p class="mt-3 leading-relaxed text-ink-soft">{{ $section['text'] }}</p>
+                    <p class="mt-3 leading-relaxed text-ink-soft">{{ __($section['text'], Company::replacements()) }}</p>
                 </section>
             @endforeach
 

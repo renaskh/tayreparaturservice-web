@@ -67,6 +67,27 @@ final class SiteCopy
     }
 
     /**
+     * @param  array<string, array<string, string|null>>  $contents
+     */
+    public static function saveGroup(string $group, array $contents): void
+    {
+        foreach ($contents as $locale => $fields) {
+            foreach ($fields as $key => $value) {
+                SiteContent::query()->updateOrCreate(
+                    [
+                        'group' => $group,
+                        'key' => str_replace('|', '.', (string) $key),
+                        'locale' => $locale,
+                    ],
+                    ['value' => is_scalar($value) || $value === null ? (string) $value : ''],
+                );
+            }
+        }
+
+        self::forget();
+    }
+
+    /**
      * @param  array<string, mixed>  $array
      * @return array<string, string>
      */

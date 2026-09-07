@@ -1,3 +1,4 @@
+@use('App\Support\Company')
 @use('App\Support\Localization')
 
 <x-layouts.site :title="$metaTitle" :description="$metaDescription" :canonical="$canonical">
@@ -105,6 +106,22 @@
 
             <aside class="h-fit bg-ink px-6 py-8 text-paper">
                 <h2 class="text-lg font-semibold tracking-[-0.02em]">{{ __('contact.aside.title') }}</h2>
+                @if (Company::has('email') || Company::has('phone'))
+                    <dl class="mt-6 space-y-3 text-sm text-paper/80">
+                        @if (Company::has('phone'))
+                            <div>
+                                <dt class="text-xs tracking-[0.18em] text-paper/40 uppercase">{{ __('contact.fields.phone') }}</dt>
+                                <dd class="mt-1"><a class="hover:text-paper" href="{{ Company::telHref() }}">{{ Company::value('phone') }}</a></dd>
+                            </div>
+                        @endif
+                        @if (Company::has('email'))
+                            <div>
+                                <dt class="text-xs tracking-[0.18em] text-paper/40 uppercase">{{ __('contact.fields.email') }}</dt>
+                                <dd class="mt-1"><a class="hover:text-paper" href="mailto:{{ Company::value('email') }}">{{ Company::value('email') }}</a></dd>
+                            </div>
+                        @endif
+                    </dl>
+                @endif
                 <ul class="mt-6 divide-y divide-white/10 border-y border-white/10 text-sm text-paper/70">
                     @foreach (__('contact.aside.items') as $item)
                         <li class="py-4">{{ $item }}</li>
