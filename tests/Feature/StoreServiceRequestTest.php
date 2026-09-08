@@ -60,7 +60,7 @@ class StoreServiceRequestTest extends TestCase
         $this->get('/de/kontakt')
             ->assertOk()
             ->assertSee('+49 163 3609131', false)
-            ->assertSee('info@eneshandyreparatur.de', false);
+            ->assertSee('info@tayreparaturservice.de', false);
     }
 
     public function test_empty_payload_returns_translated_validation_messages(): void

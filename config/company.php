@@ -18,7 +18,7 @@ return [
 
     'country' => env('COMPANY_COUNTRY') ?: 'Deutschland',
 
-    'email' => env('COMPANY_EMAIL') ?: 'info@eneshandyreparatur.de',
+    'email' => env('COMPANY_EMAIL') ?: 'info@tayreparaturservice.de',
 
     'phone' => env('COMPANY_PHONE') ?: '+49 163 3609131',
 

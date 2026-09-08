@@ -16,7 +16,7 @@ class LegalPagesTest extends TestCase
             ->assertSee('Rosenstraße 19', false)
             ->assertSee('63450 Hanau', false)
             ->assertSee('DE347824732', false)
-            ->assertSee('info@eneshandyreparatur.de', false)
+            ->assertSee('info@tayreparaturservice.de', false)
             ->assertSee('+49 163 3609131', false)
             ->assertSee('https://ec.europa.eu/consumers/odr', false)
             ->assertSee('Verbraucherschlichtungsstelle', false)
@@ -32,7 +32,7 @@ class LegalPagesTest extends TestCase
             ->assertSee('Kontakt- und Anfrageformular', false)
             ->assertSee('technisch notwendiges Sitzungs-Cookie', false)
             ->assertSee('Enes Handy Reparatur', false)
-            ->assertSee('info@eneshandyreparatur.de', false)
+            ->assertSee('info@tayreparaturservice.de', false)
             ->assertDontSee('Google Analytics', false)
             ->assertDontSee('sobald sie feststehen', false);
     }
@@ -55,6 +55,6 @@ class LegalPagesTest extends TestCase
         $this->get('/de/widerruf')
             ->assertOk()
             ->assertSee('Rosenstraße 19', false)
-            ->assertSee('info@eneshandyreparatur.de', false);
+            ->assertSee('info@tayreparaturservice.de', false);
     }
 }
